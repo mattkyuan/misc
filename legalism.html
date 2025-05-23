@@ -43,5 +43,111 @@ private:
     <!-- Principle 3 -->
     <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
       <h2 class="text-xl font-semibold mb-2">3. Punish faults with clarity, not cruelty.</h2>
-      <p class="mb-4 text-gray-700">A failing test is not a rebuke—it is a correcti
+      <p class="mb-4 text-gray-700">A failing test is not a rebuke—it is a corrective force.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>void testDivide() {
+    assert(divide(10, 2) == 5);
+    try {
+        divide(5, 0);
+        assert(false); // should never reach
+    } catch (const std::invalid_argument&amp;) {
+        // expected
+    }
+}</code></pre>
+    </div>
 
+    <!-- Principle 4 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">4. All behavior must be accounted for.</h2>
+      <p class="mb-4 text-gray-700">Undefined behavior is disobedience in waiting.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>enum class State { START, PROCESS, END };
+
+void handle(State state) {
+    switch (state) {
+        case State::START: break;
+        case State::PROCESS: break;
+        case State::END: break;
+        default: throw std::logic_error("Unhandled state");
+    }
+}</code></pre>
+    </div>
+
+    <!-- Principle 5 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">5. Human nature is flawed; build for mistrust.</h2>
+      <p class="mb-4 text-gray-700">Assume users will break your API. Assume collaborators will misuse your function. Harden your interface.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>int safeDivide(int a, int b) {
+    if (b == 0) throw std::invalid_argument("Divide by zero");
+    return a / b;
+}</code></pre>
+    </div>
+
+    <!-- Principle 6 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">6. Visibility is control.</h2>
+      <p class="mb-4 text-gray-700">Log. Trace. Monitor. You cannot govern what you cannot observe.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>void logRequest(const std::string& endpoint) {
+    std::cout &lt;&lt; "[LOG] Accessed: " &lt;&lt; endpoint &lt;&lt; " at " &lt;&lt; time(nullptr) &lt;&lt; std::endl;
+}</code></pre>
+    </div>
+
+    <!-- Principle 7 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">7. Centralize authority, decentralize execution.</h2>
+      <p class="mb-4 text-gray-700">Architecture is the ruler; services are its ministers. Coordination without hierarchy leads to drift.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>class ServiceRegistry {
+public:
+    void registerService(const std::string& name, std::function&lt;void()&gt; handler) {
+        services[name] = handler;
+    }
+
+    void execute(const std::string& name) {
+        services.at(name)();
+    }
+
+private:
+    std::unordered_map&lt;std::string, std::function&lt;void()&gt;&gt; services;
+};</code></pre>
+    </div>
+
+    <!-- Principle 8 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">8. Incentives shape the system.</h2>
+      <p class="mb-4 text-gray-700">Design feedback loops that reward stability, not cleverness. Align individual contributions with systemic goals.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>int stableSort(std::vector&lt;int&gt;& data) {
+    std::stable_sort(data.begin(), data.end());
+    return data.size();
+}</code></pre>
+    </div>
+
+    <!-- Principle 9 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">9. Simplicity is strength. Complexity invites subversion.</h2>
+      <p class="mb-4 text-gray-700">A complex function hides bugs. A complex process hides blame.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>// BAD
+int compute(int x, int y, bool flag, int mode, double scale = 1.0) {
+    return x + y;
+}
+
+// BETTER
+int add(int x, int y) {
+    return x + y;
+}</code></pre>
+    </div>
+
+    <!-- Principle 10 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">10. The good engineer enforces discipline. The great engineer codifies it.</h2>
+      <p class="mb-4 text-gray-700">Standards are the scaffolding of greatness.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>template&lt;typename T&gt;
+concept Incrementable = requires(T x) {
+    { ++x } -&gt; std::same_as&lt;T&amp;&gt;;
+};
+
+template&lt;Incrementable T&gt;
+void incrementAll(std::vector&lt;T&gt;& items) {
+    for (auto&amp; item : items) ++item;
+}</code></pre>
+    </div>
+  </div>
+</body>
+</html>
