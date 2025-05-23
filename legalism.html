@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Way of Code: Legalist Edition</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <div class="p-6 space-y-12 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-center">The Way of Code: Legalist Edition</h1>
+
+    <!-- Principle 1 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">1. Code is law. Execution is obedience.</h2>
+      <p class="mb-4 text-gray-700">Rules must be unambiguous. Interpretation invites chaos.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>constexpr int MAX_USERS = 100;
+
+void addUser(std::vector&lt;User&gt;& users, const User& user) {
+    if (users.size() &gt;= MAX_USERS) {
+        throw std::runtime_error("User limit exceeded");
+    }
+    users.push_back(user);
+}</code></pre>
+    </div>
+
+    <!-- Principle 2 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">2. Favor enforcement over intention.</h2>
+      <p class="mb-4 text-gray-700">A system that depends on developer goodwill will fail at scale. Write constraints, not hopes.</p>
+      <pre class="bg-gray-100 rounded p-4 text-sm overflow-auto"><code>class Password {
+public:
+    Password(const std::string& pwd) {
+        if (pwd.length() &lt; 8) throw std::invalid_argument("Too short");
+        if (pwd.find("123") != std::string::npos) throw std::invalid_argument("Weak pattern");
+        value = pwd;
+    }
+private:
+    std::string value;
+};</code></pre>
+    </div>
+
+    <!-- Principle 3 -->
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-semibold mb-2">3. Punish faults with clarity, not cruelty.</h2>
+      <p class="mb-4 text-gray-700">A failing test is not a rebuke—it is a correcti
+
